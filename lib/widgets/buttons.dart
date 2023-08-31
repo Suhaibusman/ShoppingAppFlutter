@@ -1,12 +1,11 @@
-// ignore_for_file: non_constant_identifier_names
+
 
 import 'package:flutter/material.dart';
 
-class CustomButtonWidget extends StatelessWidget {
+class CustomButtonWidget extends StatefulWidget {
   final String buttonText;
   final void Function() onPressed;
-  
-  //final Widget IconData;
+
   final double buttonHeight;
   final double buttonWidth;
   final Color backgroundColor;
@@ -16,21 +15,26 @@ class CustomButtonWidget extends StatelessWidget {
       {super.key, required this.buttonText, required this.onPressed, required this.buttonHeight, required this.buttonWidth, required this.backgroundColor, required this.fontColor, this.icondata,});
 
   @override
+  State<CustomButtonWidget> createState() => _CustomButtonWidgetState();
+}
+
+class _CustomButtonWidgetState extends State<CustomButtonWidget> {
+  @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onPressed,
+      onPressed: widget.onPressed,
      style: ElevatedButton.styleFrom(
       elevation: 0,
-      backgroundColor: backgroundColor,
-minimumSize:  Size(buttonWidth, buttonHeight),
+      backgroundColor: widget.backgroundColor,
+minimumSize:  Size(widget.buttonWidth, widget.buttonHeight),
 shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(20),
     ),
   ),
       child: Wrap(
         children: [
-          Text(buttonText ,style:  TextStyle(fontFamily: "OpenSans", fontSize: 16,fontWeight: FontWeight.bold ,color: fontColor),),
-           Icon(icondata!, color: Colors.black,)
+          Text(widget.buttonText ,style:  TextStyle(fontFamily: "OpenSans", fontSize: 16,fontWeight: FontWeight.bold ,color: widget.fontColor),),
+           Icon(widget.icondata!, color: Colors.black,)
         ],
       ),
     );
