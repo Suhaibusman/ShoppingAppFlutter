@@ -12,12 +12,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-          primarySwatch: Colors.blue,
-      ),
-      home: const HomeScreen(),
+    return const MaterialApp(
+    debugShowCheckedModeBanner: false,
+       home:  HomeScreen(),
+     // home: MyHomePage(),
     );
   }
 }
@@ -47,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Center(
           child: CustomButtonWidget(buttonText: "Get Started",onPressed: () {
             
-          }, buttonHeight: 70, buttonWidth: 253, backgroundColor:const Color.fromRGBO(250, 251, 253, 1), fontColor: Colors.black,),
+          }, buttonHeight: 70, buttonWidth: 253, backgroundColor:const Color.fromRGBO(250, 251, 253, 1), fontColor: Colors.black,icondata: Icons.arrow_right,),
         ),
       ) 
     );

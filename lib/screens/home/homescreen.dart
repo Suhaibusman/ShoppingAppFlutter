@@ -9,7 +9,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
+ late final PageController pagecontroller;
+@override
+  void initState() {
+    pagecontroller=PageController(
+      initialPage: 0,
+      viewportFraction: 0.85,
+    );
+    super.initState();
+  }
+  @override
+  void dispose() {
+   pagecontroller.dispose();
+    super.dispose();
+  }
   List sliderData =[
     {
       "id":1 ,"text_data":"Your holiday shopping delivered to Screen one"},
@@ -22,18 +35,36 @@ class _HomeScreenState extends State<HomeScreen> {
   int currentindex=0;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-Stack(
-  children: [
+    return  Scaffold(
 
-    InkWell(
-      onTap : (){},
+      body: SafeArea(
+        child: Column(
       
-    )
-  ],
-)
-      ],
+      children: [
+        Center(
+          child: SizedBox(
+        height: 294,
+        width: 269,
+        
+        child: PageView.builder(
+          controller: pagecontroller,
+          itemBuilder: ((context, index) {
+          return AnimatedBuilder(animation: pagecontroller, builder: (context, child) {
+            return child!;
+          },
+          child: Container(
+            margin: const EdgeInsets.only(top: 33,),
+            color: Colors.blue,
+            
+          ),
+          
+          );
+        }),itemCount: 2,),
+          ),
+        )
+      ],        
+        ),
+      ),
     );
   }
 }
