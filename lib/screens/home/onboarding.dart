@@ -1,14 +1,14 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class OnBoarding extends StatefulWidget {
+  const OnBoarding({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<OnBoarding> createState() => _OnBoardingState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _OnBoardingState extends State<OnBoarding> {
  late final PageController pagecontroller;
 @override
   void initState() {
