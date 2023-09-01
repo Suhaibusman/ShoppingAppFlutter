@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shoppingapp/models/categories_part.dart';
 import 'package:shoppingapp/models/discount_part.dart';
 
 // ignore: must_be_immutable
@@ -12,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Discountpart> discount = [];
-
+    List<Categorypart> category=[];
   void _getDiscount() {
     setState(() {
       discount = Discountpart.getDiscount();
@@ -23,8 +24,15 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _getDiscount();
+    _getCategories();
+  }
+      void _getCategories() {
+    setState(() {
+      category = Categorypart.getCategorypart();
+    });
   }
 
+ 
   @override
   Widget build(BuildContext context) {
     _getDiscount();
@@ -42,7 +50,55 @@ class _HomeScreenState extends State<HomeScreen> {
          const Padding(
            padding: EdgeInsets.only(left: 20),
            child: Text("Recommended", style: TextStyle(fontFamily: "Manrope" ,fontSize: 30),),
-         )
+         ),
+
+
+          SizedBox(
+            height: 200,
+            child: ListView.separated(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+              
+              return Container(
+                 color: const Color(0xffE0E2EE),
+                
+                height: 192,
+                width: 128,
+          
+                child: Column(
+                  children: [
+                    Center(
+                      child: SvgPicture.asset(category[index].iconpath),
+          
+                    ),
+                    SvgPicture.asset("assets/images/Line 2.svg"),
+                    Text(category[index].simplegetText ,style: const TextStyle(
+                      fontFamily: "Manrope",fontSize: 20 ,fontWeight: FontWeight.w600
+                    ),
+                    
+                    
+                    ),
+                    Text(category[index].orderdetails
+                    ,style: const TextStyle(
+                      fontFamily: "Manrope",fontSize: 12 ,fontWeight: FontWeight.w400,
+                      color: Color(0xff616A7D)
+                    ),),
+                    Center(
+                      child: Container(
+                        height: 24,
+                        width: 108,
+                        color: Colors.white,
+                      ),
+                    )
+          
+                  ],
+                ),
+              );
+            }, separatorBuilder: (context, index) => const SizedBox(width:20), itemCount: category.length),
+          )
+
+
         ],
       )),
     );
@@ -93,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 );
               },
-              separatorBuilder: (context, index) => const SizedBox(width: 20),
+              separatorBuilder: (context, index) => const SizedBox(width: 10),
               itemCount: discount.length),
         );
   }
@@ -102,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       color: const Color(0xff2A4BA0),
       width: double.infinity,
-      height: 252,
+      height: 242,
       child: Column(
         children: [
           Padding(
