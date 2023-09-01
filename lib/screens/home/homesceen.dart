@@ -11,20 +11,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
- List<Discountpart> discount=[];
+  List<Discountpart> discount = [];
 
- void _getDiscount() {
+  void _getDiscount() {
+    setState(() {
+      discount = Discountpart.getDiscount();
+    });
+  }
 
- setState(() {
-    discount = Discountpart.getDiscount();
-  });
-}
-
- @override
- void initState(){
-   super.initState();
-  _getDiscount();
- }
+  @override
+  void initState() {
+    super.initState();
+    _getDiscount();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,41 +33,53 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
         children: [
           topbar(),
-           const SizedBox(height: 20,),
-
-          //  ListView.builder(itemBuilder: (context, index) {
-          //    return Container(
-
-          //     height: 25,
-          //     width: 25,
-          //     color: Colors.red,
-          //    );
-
-          //  },)
-        //  ListView.separated(itemBuilder: (context, index)
-         
-         
-        //   {
-          
-        //    return  Container(
-        //     height: 123,
-        //     width: 275,
-        //     color: const Color(0xffF9B023),
-        //     margin: const EdgeInsets.all(12),
-        //     child: Row(
-        //       children: [
-        //         SvgPicture.asset("assets/images/Image Icon.svg"),
-        //         Column(
-        //           children: [
-        //             Text(discount[index].simplegetText,style: const TextStyle(fontSize: 20 , fontFamily: "Manrope")),
-        //              Text(discount[index].discountpercent,style: const TextStyle(fontSize: 26 , fontFamily: "Manrope" ,fontWeight: FontWeight.bold)),
-        //              Text(discount[index].orderquantity,style: const TextStyle(fontSize: 20 , fontFamily: "Manrope")),
-        //           ],
-        //         )    
-        //       ],
-        //     ),
-        //    );
-        //  }, separatorBuilder: (context, index) => const SizedBox(width: 20), itemCount: discount.length)
+          const SizedBox(
+            height: 20,
+          ),
+          ListView.separated(
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context, index) {
+                return Container(
+                  height: 123,
+                  width: 275,
+                  decoration: BoxDecoration(
+                      color: discount[index].boxColor,
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(20))),
+                  margin: const EdgeInsets.all(12),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: SvgPicture.asset("assets/images/Image Icon.svg"),
+                      ),
+                      Column(
+                        children: [
+                          Text(discount[index].simplegetText,
+                              style: const TextStyle(
+                                  fontSize: 20,
+                                  fontFamily: "Manrope",
+                                  color: Colors.white)),
+                          Text(discount[index].discountpercent,
+                              style: const TextStyle(
+                                  fontSize: 26,
+                                  fontFamily: "Manrope",
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white)),
+                          Text(discount[index].orderquantity,
+                              style: const TextStyle(
+                                  fontSize: 20,
+                                  fontFamily: "Manrope",
+                                  color: Colors.white)),
+                        ],
+                      )
+                    ],
+                  ),
+                );
+              },
+              separatorBuilder: (context, index) => const SizedBox(width: 20),
+              itemCount: discount.length)
         ],
       )),
     );
@@ -76,121 +87,115 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Container topbar() {
     return Container(
-          color: const Color(0xff2A4BA0),
-          width: double.infinity,
-          height: 252,
-          child: Column(
+      color: const Color(0xff2A4BA0),
+      width: double.infinity,
+      height: 252,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
+            child: Row(
+              children: [
+                const Expanded(
+                  child: Text(
+                    "Hey, Suhaib",
+                    style: TextStyle(
+                        color: Color(0xffF8F9FB),
+                        fontSize: 22,
+                        fontFamily: "Manrope",
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SvgPicture.asset(
+                  "assets/images/Cart Icon.svg",
+                  height: 30,
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 35, left: 20, right: 20),
+            child: TextField(
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: const Color(0xff153075),
+                contentPadding: const EdgeInsets.all(15),
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(28)),
+                hintText: 'Search Product or Store',
+                hintStyle:
+                    const TextStyle(color: Color(0xff8891A5), fontSize: 14),
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: SvgPicture.asset("assets/images/Search Icon.svg"),
+                ),
+              ),
+            ),
+          ),
+          Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
+                padding: const EdgeInsets.only(top: 30, left: 20),
                 child: Row(
                   children: [
-                    const Expanded(
+                    Text(
+                      "DELIVERY TO",
+                      style: TextStyle(
+                          fontFamily: "Manrope",
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                          color: const Color(0xffF8F9FB).withOpacity(0.5)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 250),
                       child: Text(
-                        "Hey, Suhaib",
+                        "WITHIN",
                         style: TextStyle(
-                            color: Color(0xffF8F9FB),
-                            fontSize: 22,
                             fontFamily: "Manrope",
-                            fontWeight: FontWeight.bold),
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xffF8F9FB).withOpacity(0.5)),
                       ),
                     ),
-                    SvgPicture.asset(
-                      "assets/images/Cart Icon.svg",
-                      height: 30,
-                    )
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 35, left: 20, right: 20),
-                child: TextField(
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: const Color(0xff153075),
-                    contentPadding: const EdgeInsets.all(15),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(28)),
-                    hintText: 'Search Product or Store',
-                    hintStyle: const TextStyle(
-                        color: Color(0xff8891A5), fontSize: 14),
-                    prefixIcon: Padding(
-                      padding: const EdgeInsets.all(12),
-                      child:
-                          SvgPicture.asset("assets/images/Search Icon.svg"),
-                    ),
-                  ),
-                ),
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 30, left: 20),
-                    child: Row(
-                      children: [
-                        Text(
-                          "DELIVERY TO",
-                          style: TextStyle(
-                              fontFamily: "Manrope",
-                              fontSize: 11,
-                              fontWeight: FontWeight.bold,
-                              color:
-                                  const Color(0xffF8F9FB).withOpacity(0.5)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 250),
-                          child: Text(
-                            "WITHIN",
-                            style: TextStyle(
-                                fontFamily: "Manrope",
-                                fontSize: 11,
-                                fontWeight: FontWeight.bold,
-                                color:
-                                    const Color(0xffF8F9FB).withOpacity(0.5)),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-               Row(
-                      children: [
-                    const  SizedBox(
-                        width: 20,
-                       ),
-                         const Text("Green Way 3000, Sylhet" ,style: TextStyle(
-                            
-                            fontFamily: "Manrope",fontSize: 14,
-                          
-                            color: Color(0xffF8F9FB)),
-                            
-                            ),
-                             Padding(
-                          padding: const EdgeInsets.only(left: 5),
-                          child: SvgPicture.asset("assets/images/arrow Iocn.svg"),
-                        ),
-                            const SizedBox(width: 150,),
-                        
-                        const Text("1 hour" ,style: TextStyle(
-                        
-                        fontFamily: "Manrope",fontSize: 14,
-                      
-                        color: Color(0xffF8F9FB)),
-                        
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 5),
-                          child: SvgPicture.asset("assets/images/arrow Iocn.svg"),
-                        )
-
-                          
-                      ],
-                    ),
             ],
           ),
-        );
+          Row(
+            children: [
+              const SizedBox(
+                width: 20,
+              ),
+              const Text(
+                "Green Way 3000, Sylhet",
+                style: TextStyle(
+                    fontFamily: "Manrope",
+                    fontSize: 14,
+                    color: Color(0xffF8F9FB)),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 5),
+                child: SvgPicture.asset("assets/images/arrow Iocn.svg"),
+              ),
+              const SizedBox(
+                width: 150,
+              ),
+              const Text(
+                "1 hour",
+                style: TextStyle(
+                    fontFamily: "Manrope",
+                    fontSize: 14,
+                    color: Color(0xffF8F9FB)),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 5),
+                child: SvgPicture.asset("assets/images/arrow Iocn.svg"),
+              )
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
-
-

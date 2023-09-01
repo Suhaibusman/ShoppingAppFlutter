@@ -27,7 +27,7 @@ static List<Discountpart> getDiscount(){
 
   discount.add(
 
-      Discountpart(simplegetText: "Get", discountpercent: "70% OFF", orderquantity: "On first 05 Order", iconpath: "assets/images/Image Icon.svg", boxColor: const Color(0xffE4DDCB))
+      Discountpart(simplegetText: "Get", discountpercent: "70% OFF", orderquantity: "On first 05 Order", iconpath: "assets/images/Image Icon.svg", boxColor: const Color.fromARGB(255, 9, 255, 173))
     );
 
  return discount;
