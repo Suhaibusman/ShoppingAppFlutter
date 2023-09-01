@@ -45,30 +45,30 @@ class _HomeScreenState extends State<HomeScreen> {
           //    );
 
           //  },)
-         ListView.separated(itemBuilder: (context, index)
+        //  ListView.separated(itemBuilder: (context, index)
          
          
-          {
+        //   {
           
-           return  Container(
-            height: 123,
-            width: 275,
-            color: const Color(0xffF9B023),
-            margin: const EdgeInsets.all(12),
-            child: Row(
-              children: [
-                SvgPicture.asset("assets/images/Image Icon.svg"),
-                Column(
-                  children: [
-                    Text(discount[index].simplegetText,style: const TextStyle(fontSize: 20 , fontFamily: "Manrope")),
-                     Text(discount[index].discountpercent,style: const TextStyle(fontSize: 26 , fontFamily: "Manrope" ,fontWeight: FontWeight.bold)),
-                     Text(discount[index].orderquantity,style: const TextStyle(fontSize: 20 , fontFamily: "Manrope")),
-                  ],
-                )    
-              ],
-            ),
-           );
-         }, separatorBuilder: (context, index) => const SizedBox(width: 20), itemCount: discount.length)
+        //    return  Container(
+        //     height: 123,
+        //     width: 275,
+        //     color: const Color(0xffF9B023),
+        //     margin: const EdgeInsets.all(12),
+        //     child: Row(
+        //       children: [
+        //         SvgPicture.asset("assets/images/Image Icon.svg"),
+        //         Column(
+        //           children: [
+        //             Text(discount[index].simplegetText,style: const TextStyle(fontSize: 20 , fontFamily: "Manrope")),
+        //              Text(discount[index].discountpercent,style: const TextStyle(fontSize: 26 , fontFamily: "Manrope" ,fontWeight: FontWeight.bold)),
+        //              Text(discount[index].orderquantity,style: const TextStyle(fontSize: 20 , fontFamily: "Manrope")),
+        //           ],
+        //         )    
+        //       ],
+        //     ),
+        //    );
+        //  }, separatorBuilder: (context, index) => const SizedBox(width: 20), itemCount: discount.length)
         ],
       )),
     );
@@ -87,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     const Expanded(
                       child: Text(
-                        "Hey, Halal",
+                        "Hey, Suhaib",
                         style: TextStyle(
                             color: Color(0xffF8F9FB),
                             fontSize: 22,
