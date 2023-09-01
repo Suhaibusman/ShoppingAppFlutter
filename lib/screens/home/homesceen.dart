@@ -31,14 +31,29 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SafeArea(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           topbar(),
           const SizedBox(
-            height: 20,
+            height: 15,
           ),
-          ListView.separated(
+          discountview(),
+          
+         const Padding(
+           padding: EdgeInsets.only(left: 20),
+           child: Text("Recommended", style: TextStyle(fontFamily: "Manrope" ,fontSize: 30),),
+         )
+        ],
+      )),
+    );
+  }
+
+  SizedBox discountview() {
+    return SizedBox(
+          height: 150,
+          child: ListView.separated(
               shrinkWrap: true,
-              scrollDirection: Axis.vertical,
+              scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return Container(
                   height: 123,
@@ -47,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: discount[index].boxColor,
                       borderRadius:
                           const BorderRadius.all(Radius.circular(20))),
-                  margin: const EdgeInsets.all(12),
+                  margin: const EdgeInsets.all(10),
                   child: Row(
                     children: [
                       Padding(
@@ -79,10 +94,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
               separatorBuilder: (context, index) => const SizedBox(width: 20),
-              itemCount: discount.length)
-        ],
-      )),
-    );
+              itemCount: discount.length),
+        );
   }
 
   Container topbar() {
