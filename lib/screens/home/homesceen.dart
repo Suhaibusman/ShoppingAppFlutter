@@ -12,13 +12,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<Categorypart> category = [];
   List<Discountpart> discount = [];
-    List<Categorypart> category=[];
-  void _getDiscount() {
-    setState(() {
-      discount = Discountpart.getDiscount();
-    });
-  }
 
   @override
   void initState() {
@@ -26,132 +21,54 @@ class _HomeScreenState extends State<HomeScreen> {
     _getDiscount();
     _getCategories();
   }
-      void _getCategories() {
-    setState(() {
-      category = Categorypart.getCategorypart();
-    });
-  }
-
- 
-  @override
-  Widget build(BuildContext context) {
-    _getDiscount();
-    return Scaffold(
-      body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          topbar(),
-          const SizedBox(
-            height: 15,
-          ),
-          discountview(),
-          
-         const Padding(
-           padding: EdgeInsets.only(left: 20),
-           child: Text("Recommended", style: TextStyle(fontFamily: "Manrope" ,fontSize: 30),),
-         ),
-
-
-          SizedBox(
-            height: 200,
-            child: ListView.separated(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-              
-              return Container(
-                 color: const Color(0xffE0E2EE),
-                
-                height: 192,
-                width: 128,
-          
-                child: Column(
-                  children: [
-                    Center(
-                      child: SvgPicture.asset(category[index].iconpath),
-          
-                    ),
-                    SvgPicture.asset("assets/images/Line 2.svg"),
-                    Text(category[index].simplegetText ,style: const TextStyle(
-                      fontFamily: "Manrope",fontSize: 20 ,fontWeight: FontWeight.w600
-                    ),
-                    
-                    
-                    ),
-                    Text(category[index].orderdetails
-                    ,style: const TextStyle(
-                      fontFamily: "Manrope",fontSize: 12 ,fontWeight: FontWeight.w400,
-                      color: Color(0xff616A7D)
-                    ),),
-                    Center(
-                      child: Container(
-                        height: 24,
-                        width: 108,
-                        color: Colors.white,
-                      ),
-                    )
-          
-                  ],
-                ),
-              );
-            }, separatorBuilder: (context, index) => const SizedBox(width:20), itemCount: category.length),
-          )
-
-
-        ],
-      )),
-    );
-  }
 
   SizedBox discountview() {
     return SizedBox(
-          height: 150,
-          child: ListView.separated(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Container(
-                  height: 123,
-                  width: 275,
-                  decoration: BoxDecoration(
-                      color: discount[index].boxColor,
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(20))),
-                  margin: const EdgeInsets.all(10),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20, right: 20),
-                        child: SvgPicture.asset("assets/images/Image Icon.svg"),
-                      ),
-                      Column(
-                        children: [
-                          Text(discount[index].simplegetText,
-                              style: const TextStyle(
-                                  fontSize: 20,
-                                  fontFamily: "Manrope",
-                                  color: Colors.white)),
-                          Text(discount[index].discountpercent,
-                              style: const TextStyle(
-                                  fontSize: 26,
-                                  fontFamily: "Manrope",
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white)),
-                          Text(discount[index].orderquantity,
-                              style: const TextStyle(
-                                  fontSize: 20,
-                                  fontFamily: "Manrope",
-                                  color: Colors.white)),
-                        ],
-                      )
-                    ],
+      height: 150,
+      child: ListView.separated(
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return Container(
+              height: 123,
+              width: 275,
+              decoration: BoxDecoration(
+                  color: discount[index].boxColor,
+                  borderRadius: const BorderRadius.all(Radius.circular(20))),
+              margin: const EdgeInsets.only(left:10 ,top: 10 ,bottom:10),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 10),
+                    child: SvgPicture.asset("assets/images/Image Icon.svg"),
                   ),
-                );
-              },
-              separatorBuilder: (context, index) => const SizedBox(width: 10),
-              itemCount: discount.length),
-        );
+                  Column(
+                    children: [
+                      Text(discount[index].simplegetText,
+                          style: const TextStyle(
+                              fontSize: 20,
+                              fontFamily: "Manrope",
+                              color: Colors.white)),
+                      Text(discount[index].discountpercent,
+                          style: const TextStyle(
+                              fontSize: 26,
+                              fontFamily: "Manrope",
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
+                      Text(discount[index].orderquantity,
+                          style: const TextStyle(
+                              fontSize: 20,
+                              fontFamily: "Manrope",
+                              color: Colors.white)),
+                    ],
+                  )
+                ],
+              ),
+            );
+          },
+          separatorBuilder: (context, index) => const SizedBox(width: 10),
+          itemCount: discount.length),
+    );
   }
 
   Container topbar() {
@@ -265,6 +182,138 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  void _getDiscount() {
+    setState(() {
+      discount = Discountpart.getDiscount();
+    });
+  }
+
+  void _getCategories() {
+    setState(() {
+      category = Categorypart.getCategorypart();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _getDiscount();
+    return Scaffold(
+      body: SafeArea(
+          child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          topbar(),
+          const SizedBox(
+            height: 15,
+          ),
+          discountview(),
+          const Padding(
+            padding: EdgeInsets.only(left: 20),
+            child: Text(
+              "Recommended",
+              style: TextStyle(fontFamily: "Manrope", fontSize: 30),
+            ),
+          ),
+          SizedBox(
+            height: 194,
+            width: 170,
+            child: ListView.separated(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                        color: Color(0xffE0E2EE),
+                      ),
+
+                      // height: 250,
+                      // width: 200,
+
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 15, left: 20),
+                              child: SvgPicture.asset(
+                                category[index].iconpath,
+                                height: 50,
+                                width: 50,
+                              ),
+                            ),
+                          ),
+                          //  SvgPicture.asset("assets/images/Line 2.svg"),
+                          Text(
+                            category[index].simplegetText,
+                            style: const TextStyle(
+                                fontFamily: "Manrope",
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          Text(
+                            category[index].orderdetails,
+                            style: const TextStyle(
+                              fontFamily: "Manrope",
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xff616A7D),
+                            ),
+                          ),
+
+                          Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 8 ,top: 10),
+                              child: Container(height: 24, width: 108, 
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(12)),
+                                color: Color(0xffFFFFFF)
+                              ),
+                              child: Row(
+                                children: [
+                                  const Padding(
+                                  
+                                    padding: EdgeInsets.only(left: 10),
+                                    child: Text(
+                                                              "Unit",
+                                                              style: TextStyle(
+                                                                fontFamily: "Manrope",
+                                                                fontSize: 12,
+                                                                fontWeight: FontWeight.w400,
+                                                                color: Color(0xff616A7D),
+                                                              ),
+                                  
+                                                            ),
+                                  ),
+                          Text(
+                            category[index].categoryPrice,
+                            style: const TextStyle(
+                              fontFamily: "Manrope",
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            ),
+                          ),
+                                ],
+                              ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                separatorBuilder: (context, index) => const SizedBox(width: 20),
+                itemCount: category.length),
+          )
+        ],
+      )),
     );
   }
 }
