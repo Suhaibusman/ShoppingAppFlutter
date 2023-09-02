@@ -219,7 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           SizedBox(
             height: 194,
-            width: 170,
+            
             child: ListView.separated(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
@@ -231,7 +231,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         borderRadius: BorderRadius.all(Radius.circular(12)),
                         color: Color(0xffE0E2EE),
                       ),
-
+width: 150,
                       // height: 250,
                       // width: 200,
 
@@ -290,13 +290,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                   
                                                             ),
                                   ),
-                          Text(
-                            category[index].categoryPrice,
-                            style: const TextStyle(
-                              fontFamily: "Manrope",
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
+                          Padding(
+                            padding: const EdgeInsets.only(left:10),
+                            child: Text(
+                              category[index].categoryPrice,
+                              style: const TextStyle(
+                                fontFamily: "Manrope",
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                                 ],
@@ -309,7 +312,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   );
                 },
-                separatorBuilder: (context, index) => const SizedBox(width: 20),
+                separatorBuilder: (context, index) => const SizedBox(width: 0.1),
                 itemCount: category.length),
           )
         ],

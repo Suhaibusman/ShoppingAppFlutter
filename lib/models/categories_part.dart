@@ -23,8 +23,17 @@ static List<Categorypart> getCategorypart(){
 
     Categorypart(simplegetText: "Fresh Lemon", categoryPrice: "12", orderdetails: "Organic", iconpath: "assets/images/LemonLores.svg")
   );
-    
 
+   category.add(
+
+    Categorypart(simplegetText: "Green Tea", categoryPrice: "06", orderdetails: "Organic", iconpath: "assets/images/Green_tea_sachet.svg")
+  );
+
+  category.add(
+
+    Categorypart(simplegetText: "Fresh Fish", categoryPrice: "16", orderdetails: "Organic", iconpath: "assets/images/fish-line-art.svg")
+  );
+    
  return category;
 }
 
