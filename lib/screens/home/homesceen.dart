@@ -1,3 +1,5 @@
+
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shoppingapp/models/categories_part.dart';
@@ -12,9 +14,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int index =0;
   List<Categorypart> category = [];
   List<Discountpart> discount = [];
-
+   final items= const <Widget>  [
+            Icon(Icons.add, size: 30),
+            Icon(Icons.category, size: 30),
+            Icon(Icons.favorite, size: 30),
+            Icon(Icons.more_vert, size: 30),
+          
+          ];
   @override
   void initState() {
     super.initState();
@@ -74,12 +83,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Container topbar() {
     return Container(
       color: const Color(0xff2A4BA0),
-      width: double.infinity,
-      height: 242,
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height*0.3,
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
+            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
             child: Row(
               children: [
                 const Expanded(
@@ -100,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 35, left: 20, right: 20),
+            padding: const EdgeInsets.only(top: 25, left: 20, right: 20),
             child: TextField(
               decoration: InputDecoration(
                 filled: true,
@@ -317,6 +326,25 @@ width: 150,
           )
         ],
       )),
+      
+      bottomNavigationBar: Theme(
+        data: Theme.of(context).copyWith(
+          iconTheme: const IconThemeData(color: Colors.black)
+        ),
+        child: CurvedNavigationBar(
+          
+          backgroundColor: Colors.transparent,
+          buttonBackgroundColor: Colors.amber,
+          animationCurve: Curves.easeInOut,
+          animationDuration: const Duration(milliseconds: 300),
+          items: items,
+          height: 60,
+          index: index,
+          onTap: (index) => setState(() =>
+           this.index =index    ),
+         ),
+      ),
+   
     );
   }
 }

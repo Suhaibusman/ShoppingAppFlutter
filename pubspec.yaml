@@ -30,6 +30,8 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   carousel_slider: ^4.2.1
+  circular_bottom_navigation: ^2.3.0
+  curved_navigation_bar: ^1.0.3
   flutter:
     sdk: flutter
   flutter_svg: ^2.0.7
